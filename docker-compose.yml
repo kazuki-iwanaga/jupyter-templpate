@@ -1,0 +1,21 @@
+version: '3'
+services:
+  notebook:
+    image: jupyter/scipy-notebook
+    container_name: notebook
+    user: jovyan
+    tty: true
+    volumes:
+      - ./notebook:/home/jovyan/notebook
+    working_dir: /home/jovyan/notebook
+    ports:
+      - ${JUPYTER_PORT:-8888}:8888
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    command: >
+      start-notebook.sh
+        --NotebookApp.ip=0.0.0.0
+        --NotebookApp.port=8888
+        --NotebookApp.password=${JUPYTER_PASSWORD:-password}
+        --NotebookApp.password_required=True
+        --NotebookApp.open_browser=False
