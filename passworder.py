@@ -1,4 +1,4 @@
-from notebook.auth import passwd
+from jupyter_server.auth import passwd
 from random import randint
 
 with open('/tmp/.env', mode='w') as f:
